@@ -8,12 +8,11 @@ let service2 = prompt('Какой дополнительный тип услуг
 let servicePrice2 = +prompt('Сколько это будет стоить?', '2003');
 let rollback = 50;
 
-let fullPrice = screenPrice + servicePrice1 + servicePrice2;
+const fullPrice = screenPrice + servicePrice1 + servicePrice2;
 
-let servicePercentPrice = fullPrice - fullPrice * (rollback / 100);
+const servicePercentPrice = fullPrice - fullPrice * (rollback / 100);
 
-roundedServicePercentPrice = Math.ceil(servicePercentPrice); //округление в большую сторону    
-console.log(roundedServicePercentPrice);
+console.log(Math.ceil(servicePercentPrice)); //округление в большую сторону    
 
 switch (true) {
   case fullPrice >= 30000:
@@ -33,10 +32,9 @@ switch (true) {
     break;
 }
 
-// предудущие уроки
-// console.log('тип title - ' + typeof title + '\n' + 'тип fullPrice - ' + typeof fullPrice + '\n' + 'тип adaptive - ' + typeof adaptive);
-// console.log('длина строки screens - ' + screens.length);
-// console.log('Стоимость верстки экранов ' + screenPrice + ' рублей' + '\n' + 'Стоимость разработки сайта ' + fullPrice + ' рублей');
-// screensLower = screens.toLowerCase();
-// console.log(screensLower.split(', '));
-// console.log('Процент отката посреднику за работу ' + fullPrice * (rollback / 100));
+console.log('тип title - ' + typeof title + '\n' + 'тип fullPrice - ' + typeof fullPrice + '\n' + 'тип adaptive - ' + typeof adaptive);
+console.log('длина строки screens - ' + screens.length);
+console.log('Стоимость верстки экранов ' + screenPrice + ' рублей' + '\n' + 'Стоимость разработки сайта ' + fullPrice + ' рублей');
+screensLower = screens.toLowerCase();
+console.log(screensLower.split(', '));
+console.log('Процент отката посреднику за работу ' + fullPrice * (rollback / 100));
