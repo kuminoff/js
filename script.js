@@ -12,7 +12,7 @@ let fullPrice = screenPrice + servicePrice1 + servicePrice2;
 
 let servicePercentPrice = fullPrice - fullPrice * (rollback / 100);
 
-roundedServicePercentPrice = Math.ceil(servicePercentPrice); //округление в большую сторону  
+roundedServicePercentPrice = Math.ceil(servicePercentPrice); //округление в большую сторону   
 console.log(roundedServicePercentPrice);
 
 switch (true) {
