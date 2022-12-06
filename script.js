@@ -1,4 +1,4 @@
-"use strict";
+"use strict"; 
 
 let rollback = 50;
 let screens = prompt('Какие типы экранов нужно разработать?', 'Простые, Сложные, Интерактивные');
@@ -8,6 +8,11 @@ let service1 = prompt('Какой дополнительный тип услуг
 let servicePrice1 = +prompt('Сколько это будет стоить?', '1000');
 let service2 = prompt('Какой дополнительный тип услуги нужен?', 'Поддержка WordPress');
 let servicePrice2 = +prompt('Сколько это будет стоить?', '2003');
+
+let allServicePrices;
+let fullPrice;
+let title;
+let servicePercentPrice;
 
 const showTypeOf = function (variable) {
   console.log(variable, typeof variable);
@@ -38,18 +43,17 @@ function getFullPrice(price, servPrices) {
 }
 
 const getTitle = function (name) {
-  let nameTrans = name;
-  return name.charAt[0] = ' ' ? name.charAt(1).toUpperCase() + name.slice(2).toLowerCase() : ' ';
+  let nameTrans = name.trim();
+  return nameTrans.charAt(0).toUpperCase() + nameTrans.slice(1).toLowerCase();
 };
 
 const getServicePercentPrices = function (price, roll) {
   return price - price * (roll / 100);
 };
-
-let allServicePrices = getAllServicePrices(servicePrice1, servicePrice2);
-let fullPrice = getFullPrice(screenPrice, allServicePrices);
-let title = getTitle(prompt('Как называется ваш проект?', ' ГриЛЬНИцА'));
-let servicePercentPrice = getServicePercentPrices(fullPrice, rollback);
+allServicePrices = getAllServicePrices(servicePrice1, servicePrice2); 
+fullPrice = getFullPrice(screenPrice, allServicePrices);
+title = getTitle(prompt('Как называется ваш проект?', 'ГриЛьНИцА'));
+servicePercentPrice = getServicePercentPrices(fullPrice, rollback);
 
 showTypeOf(title);
 showTypeOf(fullPrice);
