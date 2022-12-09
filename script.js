@@ -14,20 +14,30 @@ let title;
 let servicePercentPrice;
 let roundedServicePercentPrice;
 
+
+// 1) Перенести все функции в объект (сделать их методами объекта)
+// 2) Создать в объекте метод start и перенести в него вызов метода asking и переопределение свойств. Вне самого объекта запускаем только метод start который в нужном порядке выполнит все действия.
+// 3) Создать в объекте метод logger который будет выводить в консоль необходимую информацию. Данный метод запускаем в самом конце метода start (после того как все расчеты уже были произведены)
+// 4) Вывести в консоль из метода logger все свойства и методы объекта appData с помощью цикла for in
+
+// Таким образом вне объекта теперь должен быть только вызов метода start( )
+// Поправить весь проект, ошибок в консоли быть не должно, а в консоль должна выводится необходимая информация!
+
+
 const isNumber = function (num) {
   return !isNaN(parseFloat(num)) && isFinite(num) && !/\s/g.test(num);
 };
 
 
 const asking = function () {
-  title = prompt('Как называется ваш проект?', "ГриЛьНИцА");
-  screens = prompt('Какие типы экранов нужно разработать?', 'Простые, Сложные, Интерактивные');
+  title = prompt(`Как называется ваш проект?`, `ГриЛьНИцА`);
+  screens = prompt(`Какие типы экранов нужно разработать?`, `Простые, Сложные, Интерактивные`);
 
   do {
-    screenPrice = prompt("Сколько будет стоить данная работа?", 12000);
+    screenPrice = prompt(`Сколько будет стоить данная работа?`, 12000);
   } while (!isNumber(screenPrice));
   screenPrice = +screenPrice;
-  adaptive = confirm("Нужен ли адаптив на сайте? (Ок - да, отмена - нет)");
+  adaptive = confirm(`Нужен ли адаптив на сайте? (Ок - да, отмена - нет)`);
 };
 
 const showTypeOf = function (variable) {
@@ -37,16 +47,16 @@ const showTypeOf = function (variable) {
 const getRollbackMessage = function (price) {
   switch (true) {
     case price >= 3000:
-      return "Даём скидку 10%";
+      return `Даём скидку 10%`;
 
     case price >= 1500:
-      return "Даём скидку 5%";
+      return `Даём скидку 5%`;
 
     case price > 0:
-      return "Скидка не предусмотрена";
+      return `Скидка не предусмотрена`;
 
     default:
-      return "Something wrong";
+      return `Упс. Что-то пошло не так`;
   }
 };
 
@@ -58,14 +68,14 @@ const getAllServicePrices = function () {
   for (let i = 0; i < 2; i++) {
 
     if (i === 0) {
-      service1 = prompt('Какой дополнительный тип услуги нужен?', 'Текущее обслуживание веб-сайта');
+      service1 = prompt(`Какой дополнительный тип услуги нужен?`, `Текущее обслуживание веб-сайта`);
     }
     if (i === 1) {
-      service2 = prompt('Какой дополнительный тип услуги нужен?', 'Поддержка WordPress');
+      service2 = prompt(`Какой дополнительный тип услуги нужен?`, `Поддержка WordPress`);
     }
 
     do {
-      servicePrice = prompt('Сколько это будет стоить?', 1000);
+      servicePrice = prompt(`Сколько это будет стоить?`, 1000);
     }
     while (!isNumber(servicePrice));
     servicePrice = +servicePrice;
@@ -102,4 +112,4 @@ showTypeOf(adaptive);
 
 console.log((screens.toLowerCase()).split(", "));
 console.log(getRollbackMessage(fullPrice));
-console.log("Итоговая стоимость за вычетом отката посреднику: " + roundedServicePercentPrice + " рублей");
+console.log(`Итоговая стоимость за вычетом отката посреднику: ${roundedServicePercentPrice} рублей`);
