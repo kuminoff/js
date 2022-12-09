@@ -14,20 +14,9 @@ let title;
 let servicePercentPrice;
 let roundedServicePercentPrice;
 
-
-// 1) Перенести все функции в объект (сделать их методами объекта)
-// 2) Создать в объекте метод start и перенести в него вызов метода asking и переопределение свойств. Вне самого объекта запускаем только метод start который в нужном порядке выполнит все действия.
-// 3) Создать в объекте метод logger который будет выводить в консоль необходимую информацию. Данный метод запускаем в самом конце метода start (после того как все расчеты уже были произведены)
-// 4) Вывести в консоль из метода logger все свойства и методы объекта appData с помощью цикла for in
-
-// Таким образом вне объекта теперь должен быть только вызов метода start( )
-// Поправить весь проект, ошибок в консоли быть не должно, а в консоль должна выводится необходимая информация!
-
-
 const isNumber = function (num) {
   return !isNaN(parseFloat(num)) && isFinite(num) && !/\s/g.test(num);
 };
-
 
 const asking = function () {
   title = prompt(`Как называется ваш проект?`, `ГриЛьНИцА`);
@@ -94,7 +83,6 @@ const getTitle = function (name) {
   let nameTrans = name.trim();
   return nameTrans.charAt(0).toUpperCase() + nameTrans.slice(1).toLowerCase();
 };
-
 
 const getServicePercentPrices = function (price, roll) {
   return price - price * (roll / 100);
