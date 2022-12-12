@@ -102,7 +102,7 @@ const appData = {
     appData.fullPrice = price + servPrices;
   },
 
-  getTitle: function (name) {
+  getTitle: function (name) { 
     let nameTrans = name
             .trim()
             .split(/\s+/)
