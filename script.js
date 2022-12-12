@@ -93,12 +93,6 @@ const appData = {
   getTitle: function (name) {
     let nameTrans = name.trim();
     return nameTrans.charAt(0).toUpperCase() + nameTrans.slice(1).toLowerCase();
-    // let nameTrans = name
-    //     .trim()
-    //     .split(/\s+/)
-    //     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-    //     .join(' ');
-    // appData.title = nameTrans;
   },
 
   getServicePercentPrices: function (price, roll) {
