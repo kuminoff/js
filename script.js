@@ -1,4 +1,6 @@
 "use strict"; 
+
+
 const appData = {
   services: {},
   allServicePrices: 0,
@@ -13,7 +15,7 @@ const appData = {
   asking: function () {
     do {
       appData.title = prompt(`Как называется ваш проект?`, `ГриЛьНИцА`);
-    } while (appData.isNumber(+appData.title.replace(/ /g, '')));
+    } while (appData.isNumber(appData.title));
     appData.adaptive = confirm(`Нужен ли адаптив на сайте?`);
 
     for (let i = 0; i < 2; i++) {
@@ -23,7 +25,7 @@ const appData = {
 
       do {
         name = prompt(`Какие типы экранов нужно разработать?`, `Простые, Сложные, Интерактивные`);
-      } while (appData.isNumber(+name.replace(/ /g, '')));
+      } while (appData.isNumber(name));
 
 
       do {
@@ -44,22 +46,31 @@ const appData = {
       let name;
       do {
         name = prompt(`Какой дополнительный тип услуги нужен?`, `Текущее обслуживание веб-сайта`);
-      } while (appData.isNumber(+name.replace(/ /g, '')));
+      } while (appData.isNumber(name));
 
       do {
         servicePrice = prompt(`Сколько это будет стоить?`, 1000);
-      }
+      } while (!appData.isNumber(servicePrice));
 
-      while (!appData.isNumber(servicePrice));
-      appData.services[name] = +servicePrice;
+      name = name + "_";
+
+      if (i.toString().length === 1) {
+                name = name + "00" + i;
+            } else if (i.toString().length === 2) {
+                name = name + "0" + i;
+            } else {
+                name = name + i;
+            }
+
+            appData.services[name] = +servicePrice;
     }
 
   },
 
   addPrices: function () {
-    for (let screen of appData.screens) {
-      appData.screenPrice += +screen.price;
-    }
+    appData.screenPrice = appData.screens.reduce(function (sum, screen) {
+            return sum += +screen.price;
+        }, 0);
 
     for (let key in appData.services) {
       appData.allServicePrices += appData.services[key];
