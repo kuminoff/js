@@ -1,6 +1,5 @@
 "use strict"; 
 
-
 const appData = {
   services: {},
   allServicePrices: 0,
@@ -13,9 +12,9 @@ const appData = {
   rollback: 50,
 
   asking: function () {
+
     do {
       appData.title = prompt(`Как называется ваш проект?`, `ГриЛьНИцА`);
-    
     } while (appData.isNumber(+appData.title.replace(/ /g, '')));
     appData.adaptive = confirm(`Нужен ли адаптив на сайте?`);
 
@@ -28,7 +27,6 @@ const appData = {
         name = prompt(`Какие типы экранов нужно разработать?`, `Простые, Сложные, Интерактивные`);
       } while (appData.isNumber(+name.replace(/ /g, '')));
 
-
       do {
         price = prompt(`Сколько будет стоить данная работа?`, 12000);
       }
@@ -40,8 +38,6 @@ const appData = {
       });
     }
 
-
-
     for (let i = 0; i < 2; i++) {
       let servicePrice;
       let name;
@@ -51,27 +47,18 @@ const appData = {
 
       do {
         servicePrice = prompt(`Сколько это будет стоить?`, 1000);
-      } while (!appData.isNumber(servicePrice));
+      }
 
-      name = name + "_";
-
-      if (i.toString().length === 1) {
-                name = name + "00" + i;
-            } else if (i.toString().length === 2) {
-                name = name + "0" + i;
-            } else {
-                name = name + i;
-            }
-
-            appData.services[name] = +servicePrice;
+      while (!appData.isNumber(servicePrice));
+      appData.services[name] = +servicePrice;
     }
 
   },
 
   addPrices: function () {
-    appData.screenPrice = appData.screens.reduce(function (sum, screen) {
-            return sum += +screen.price;
-        }, 0);
+    for (let screen of appData.screens) {
+      appData.screenPrice += +screen.price;
+    }
 
     for (let key in appData.services) {
       appData.allServicePrices += appData.services[key];
@@ -102,13 +89,9 @@ const appData = {
     appData.fullPrice = price + servPrices;
   },
 
-  getTitle: function (name) { 
-    let nameTrans = name
-            .trim()
-            .split(/\s+/)
-            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-            .join(' ');
-        appData.title = nameTrans;
+  getTitle: function (name) {
+    let nameTrans = name.trim();
+    return nameTrans.charAt(0).toUpperCase() + nameTrans.slice(1).toLowerCase();
   },
 
   getServicePercentPrices: function (price, roll) {
@@ -127,12 +110,10 @@ const appData = {
     appData.getFullPrice(appData.screenPrice, appData.allServicePrices);
     appData.getTitle(appData.title);
     appData.getServicePercentPrices(appData.fullPrice, appData.rollback);
-
     appData.logger(appData);
   }
 
 };
-
 
 appData.start();
 
