@@ -15,7 +15,8 @@ const appData = {
   asking: function () {
     do {
       appData.title = prompt(`Как называется ваш проект?`, `ГриЛьНИцА`);
-    } while (appData.isNumber(appData.title));
+    
+    } while (appData.isNumber(+appData.title.replace(/ /g, '')));
     appData.adaptive = confirm(`Нужен ли адаптив на сайте?`);
 
     for (let i = 0; i < 2; i++) {
@@ -25,7 +26,7 @@ const appData = {
 
       do {
         name = prompt(`Какие типы экранов нужно разработать?`, `Простые, Сложные, Интерактивные`);
-      } while (appData.isNumber(name));
+      } while (appData.isNumber(+name.replace(/ /g, '')));
 
 
       do {
@@ -46,7 +47,7 @@ const appData = {
       let name;
       do {
         name = prompt(`Какой дополнительный тип услуги нужен?`, `Текущее обслуживание веб-сайта`);
-      } while (appData.isNumber(name));
+      } while (appData.isNumber(+name.replace(/ /g, '')));
 
       do {
         servicePrice = prompt(`Сколько это будет стоить?`, 1000);
@@ -102,8 +103,12 @@ const appData = {
   },
 
   getTitle: function (name) {
-    let nameTrans = name.trim();
-    return nameTrans.charAt(0).toUpperCase() + nameTrans.slice(1).toLowerCase();
+    let nameTrans = name
+            .trim()
+            .split(/\s+/)
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' ');
+        appData.title = nameTrans;
   },
 
   getServicePercentPrices: function (price, roll) {
