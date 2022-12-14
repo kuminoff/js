@@ -98,7 +98,7 @@ const appData = {
   logger: function (obj) {
     for (let key in obj) {
       console.log(`Свойство/метод: ${key}`); 
-    }
+    } 
   },
 
   start: function () {
