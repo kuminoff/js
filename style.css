@@ -29,7 +29,7 @@ a:active {
 
 body {
   position: relative;
-  background-image: url(./image/open_book.jpg);
+  /* background-image: url(./image/open_book.jpg); */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
