@@ -12,25 +12,26 @@ const appData = {
   rollback: 50,
 
   asking: function () {
-
-    do {
+    appData.title = prompt(`Как называется ваш проект?`, `ГриЛьНИцА`);
+    appData.title === null ?  appData.title = 'user did not enter the "appData.title"' : '';
+    while (!isNaN(+appData.title.replace(/ /g, ''))) {
       appData.title = prompt(`Как называется ваш проект?`, `ГриЛьНИцА`);
-    } while (appData.isNumber(+appData.title.replace(/ /g, '')));
-    appData.adaptive = confirm(`Нужен ли адаптив на сайте?`);
-
+    }
+    
     for (let i = 0; i < 2; i++) {
 
       let name;
       let price;
 
-      do {
-        name = prompt(`Какие типы экранов нужно разработать?`, `Простые, Сложные, Интерактивные`);
-      } while (appData.isNumber(+name.replace(/ /g, '')));
-
-      do {
+      name = prompt(`Какие типы экранов нужно разработать?`, `Простые, Сложные, Интерактивные`);
+      if (name !== null) {
+        while (!isNaN(+name.replace(/ /g, ''))) {
+          appData.name = prompt(`Какие типы экранов нужно разработать?`, `Простые, Сложные, Интерактивные`);
+        }
         price = prompt(`Сколько будет стоить данная работа?`, 12000);
+        price === null ? price = 'user did not enter the "price"' : '';
       }
-      while (!appData.isNumber(price));
+
       appData.screens.push({
         id: i,
         name: name,
@@ -41,18 +42,18 @@ const appData = {
     for (let i = 0; i < 2; i++) {
       let servicePrice;
       let name;
-      do {
-        name = prompt(`Какой дополнительный тип услуги нужен?`, `Текущее обслуживание веб-сайта`);
-      } while (appData.isNumber(+name.replace(/ /g, '')));
 
-      do {
+      name = prompt(`Какой дополнительный тип услуги нужен?`, `Текущее обслуживание веб-сайта`);
+      // name === null ? name = 'user did not enter the "nameService"' : ''; 
+      if (name !== null) {
+        while (!isNaN(+name.replace(/ /g, ''))) {
+          appData.name = prompt(`Какой дополнительный тип услуги нужен?`, `Текущее обслуживание веб-сайта`);
+        }
         servicePrice = prompt(`Сколько это будет стоить?`, 1000);
+        servicePrice === null ? servicePrice = 'user did not enter the "price"' : '';
+        appData.services[name] = +servicePrice;
       }
-
-      while (!appData.isNumber(servicePrice));
-      appData.services[name] = +servicePrice;
     }
-
   },
 
   addPrices: function () {
@@ -65,22 +66,22 @@ const appData = {
     }
   },
 
-  isNumber: function (num) {
-    return !isNaN(parseFloat(num)) && isFinite(num) && !/\s/g.test(num);
-  },
-
   getRollbackMessage: function (price) {
     switch (true) {
       case price >= 3000:
+        console.log('1');
         return `Даём скидку 10%`;
 
       case price >= 1500:
+        console.log('2');
         return `Даём скидку 5%`;
 
       case price > 0:
+        console.log('3');
         return `Скидка не предусмотрена`;
 
       default:
+        console.log('4');
         return `Упс. Что-то пошло не так`;
     }
   },
