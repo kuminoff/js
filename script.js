@@ -10,27 +10,30 @@ const appData = {
   screenPrice: 0,
   adaptive: true,
   rollback: 50,
-
   asking: function () {
 
-    do {
-      appData.title = prompt(`Как называется ваш проект?`, `ГриЛьНИцА`);
-    } while (appData.isNumber(+appData.title.replace(/ /g, '')));
-    appData.adaptive = confirm(`Нужен ли адаптив на сайте?`);
+    // мне пришел в голову такой "гениальный" способ
+    appData.title = prompt(`Как называется ваш проект?`, `ГриЛьНИцА`);
+    if (appData.title !== null) {
+      while (appData.isNumber(+appData.title.replace(/ /g, ''))) {
+        appData.title = prompt(`Как называется ваш проект?`, `ГриЛьНИцА`);
+      }
+    }
 
     for (let i = 0; i < 2; i++) {
 
       let name;
       let price;
 
-      do {
-        name = prompt(`Какие типы экранов нужно разработать?`, `Простые, Сложные, Интерактивные`);
-      } while (appData.isNumber(+name.replace(/ /g, '')));
-
-      do {
+      name = prompt(`Какие типы экранов нужно разработать?`, `Простые, Сложные, Интерактивные`);
+      if (name !== null) {
+        while (appData.isNumber(+name.replace(/ /g, ''))) {
+          name = prompt(`Какие типы экранов нужно разработать?`, `Простые, Сложные, Интерактивные`)
+        }
         price = prompt(`Сколько будет стоить данная работа?`, 12000);
+        price === null ? "" : !appData.isNumber(price) ? price = prompt(`Сколько будет стоить данная работа?`, 12000) : "";
       }
-      while (!appData.isNumber(price));
+
       appData.screens.push({
         id: i,
         name: name,
@@ -41,12 +44,14 @@ const appData = {
     for (let i = 0; i < 2; i++) {
       let servicePrice;
       let name;
-      do {
-        name = prompt(`Какой дополнительный тип услуги нужен?`, `Текущее обслуживание веб-сайта`);
-      } while (appData.isNumber(+name.replace(/ /g, '')));
 
-      do {
+      name = prompt(`Какой дополнительный тип услуги нужен?`, `Текущее обслуживание веб-сайта`);
+      if (name !== null) {
+        while (appData.isNumber(+name.replace(/ /g, ''))) {
+          name = prompt(`Какой дополнительный тип услуги нужен?`, `Текущее обслуживание веб-сайта`);
+        }
         servicePrice = prompt(`Сколько это будет стоить?`, 1000);
+        servicePrice === null ? "" : !appData.isNumber(servicePrice) ? servicePrice = prompt(`Сколько это будет стоить?`, 1000) : "";
       }
 
       while (!appData.isNumber(servicePrice));
