@@ -69,19 +69,15 @@ const appData = {
   getRollbackMessage: function (price) {
     switch (true) {
       case price >= 3000:
-        console.log('1');
         return `Даём скидку 10%`;
 
       case price >= 1500:
-        console.log('2');
         return `Даём скидку 5%`;
 
       case price > 0:
-        console.log('3');
         return `Скидка не предусмотрена`;
 
       default:
-        console.log('4');
         return `Упс. Что-то пошло не так`;
     }
   },
