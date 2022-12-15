@@ -1,4 +1,4 @@
-"use strict"; 
+"use strict";
 
 const appData = {
   services: {},
@@ -13,29 +13,35 @@ const appData = {
 
   asking: function () {
     appData.title = prompt(`Как называется ваш проект?`, `ГриЛьНИцА`);
-    appData.title === null ?  appData.title = 'user did not enter the "appData.title"' : '';
-    while (!isNaN(+appData.title.replace(/ /g, ''))) {
+    while (!isNaN(appData.title)) {
       appData.title = prompt(`Как называется ваш проект?`, `ГриЛьНИцА`);
     }
-    
-    for (let i = 0; i < 2; i++) {
 
+    for (let i = 0; i < 2; i++) {
       let name;
       let price;
 
-      name = prompt(`Какие типы экранов нужно разработать?`, `Простые, Сложные, Интерактивные`);
-      if (name !== null) {
-        while (!isNaN(+name.replace(/ /g, ''))) {
-          appData.name = prompt(`Какие типы экранов нужно разработать?`, `Простые, Сложные, Интерактивные`);
-        }
+      name = prompt(
+        `Какие типы экранов нужно разработать?`,
+        `Простые, Сложные, Интерактивные`
+      );
+
+      while (!isNaN(name)) {
+        name = prompt(
+          `Какие типы экранов нужно разработать?`,
+          `Простые, Сложные, Интерактивные`
+        );
+      }
+
+      price = prompt(`Сколько будет стоить данная работа?`, 12000);
+      while (!Number(price)) {
         price = prompt(`Сколько будет стоить данная работа?`, 12000);
-        price === null ? price = 'user did not enter the "price"' : '';
       }
 
       appData.screens.push({
         id: i,
         name: name,
-        price: price
+        price: price,
       });
     }
 
@@ -43,16 +49,22 @@ const appData = {
       let servicePrice;
       let name;
 
-      name = prompt(`Какой дополнительный тип услуги нужен?`, `Текущее обслуживание веб-сайта`);
-      // name === null ? name = 'user did not enter the "nameService"' : ''; 
-      if (name !== null) {
-        while (!isNaN(+name.replace(/ /g, ''))) {
-          appData.name = prompt(`Какой дополнительный тип услуги нужен?`, `Текущее обслуживание веб-сайта`);
-        }
-        servicePrice = prompt(`Сколько это будет стоить?`, 1000);
-        servicePrice === null ? servicePrice = 'user did not enter the "price"' : '';
-        appData.services[name] = +servicePrice;
+      appData.name = prompt(
+        `Какой дополнительный тип услуги нужен?`,
+        `Текущее обслуживание веб-сайта`
+      );
+      while (!isNaN(appData.name)) {
+        appData.name = prompt(
+          `Какой дополнительный тип услуги нужен?`,
+          `Текущее обслуживание веб-сайта`
+        );
       }
+      servicePrice = prompt(`Сколько это будет стоить?`, 1000);
+
+      while (!Number(servicePrice)) {
+        servicePrice = prompt(`Сколько это будет стоить?`, 1000);
+      }
+      appData.services[name] = +servicePrice;
     }
   },
 
@@ -97,8 +109,8 @@ const appData = {
 
   logger: function (obj) {
     for (let key in obj) {
-      console.log(`Свойство/метод: ${key}`); 
-    } 
+      console.log(`Свойство/метод: ${key}`);
+    }
   },
 
   start: function () {
@@ -108,8 +120,7 @@ const appData = {
     appData.getTitle(appData.title);
     appData.getServicePercentPrices(appData.fullPrice, appData.rollback);
     appData.logger(appData);
-  }
-
+  },
 };
 
 appData.start();
