@@ -41,6 +41,10 @@ const appData = {
     appData.screenCount = 0;
   },
 
+  add: function () {
+    appData.screens = [];
+  },
+
   init: function () {
     appData.addTitle();
     inputRange.addEventListener(`input`, appData.spanChange);
@@ -58,8 +62,8 @@ const appData = {
     inputRangeFlag = true;
     appData.addServices();
     appData.addPrices();
+    appData.add();
     appData.showResult();
-    appData.newCalc();
   },
 
   showResult: function () {
