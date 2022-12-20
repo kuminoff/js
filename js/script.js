@@ -154,7 +154,7 @@ const appData = {
         return selectName === `Тип экранов` || input.value === ``;
       })
     ) {
-      alert(`Вы не ввели данные`);
+      alert(`Выберите тип экранов и их количество`);
       return false;
     }
     return true;
