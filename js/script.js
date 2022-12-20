@@ -41,6 +41,13 @@ const appData = {
     appData.screenCount = 0;
   },
 
+  new: function () {
+    appData.servicesPercent = {};
+    appData.servicesNumber = {};
+    appData.servicePricesPercent = 0;
+    appData.servicePricesNumber = 0;
+  },
+
   add: function () {
     appData.screens = [];
   },
@@ -58,6 +65,7 @@ const appData = {
       inputRangeFlag = false;
       appData.add();
       appData.showResult();
+      appData.newCalc();
       return;
     }
     inputRangeFlag = true;
@@ -65,6 +73,8 @@ const appData = {
     appData.addPrices();
     appData.add();
     appData.showResult();
+    appData.spanChange();
+    appData.new();
   },
 
   showResult: function () {
@@ -87,7 +97,7 @@ const appData = {
       appData.servicePercentPrice =
         appData.fullPrice -
         Math.ceil(appData.fullPrice * (appData.rollback / 100));
-      appData.showResult();
+      // appData.showResult();
     }
   },
 
