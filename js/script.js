@@ -57,6 +57,7 @@ const appData = {
     if (!appData.addScreens()) {
       appData.showResult();
       inputRangeFlag = false;
+      appData.add();
       return;
     }
     inputRangeFlag = true;
@@ -64,6 +65,7 @@ const appData = {
     appData.addPrices();
     appData.add();
     appData.showResult();
+    appData.init();
   },
 
   showResult: function () {
@@ -155,6 +157,7 @@ const appData = {
     appData.screenPrice = appData.screens.reduce(function (sum, screen) {
       return (sum += +screen.price);
     }, 0);
+    console.log(appData.screenPrice);
 
     for (let key in appData.servicesNumber) {
       appData.servicePricesNumber += appData.servicesNumber[key];
