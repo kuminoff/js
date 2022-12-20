@@ -55,9 +55,9 @@ const appData = {
 
   start: function () {
     if (!appData.addScreens()) {
-      appData.showResult();
       inputRangeFlag = false;
       appData.add();
+      appData.showResult();
       return;
     }
     inputRangeFlag = true;
@@ -65,7 +65,6 @@ const appData = {
     appData.addPrices();
     appData.add();
     appData.showResult();
-    appData.init();
   },
 
   showResult: function () {
