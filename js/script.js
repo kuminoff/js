@@ -73,6 +73,10 @@ const appData = {
     console.log(screens);
   },
 
+  add: function () {
+    appData.screens = [];
+  },
+
   init: function () {
     appData.addTitle();
     inputRange.addEventListener("input", appData.spanChange);
@@ -89,6 +93,7 @@ const appData = {
     if (!appData.addScreens()) {
       appData.showResult();
       inputRangeFlag = false;
+      appData.add();
       return;
     }
 
@@ -104,7 +109,7 @@ const appData = {
     inputRangeFlag = true;
     appData.addServices();
     appData.addPrices();
-
+    appData.add();
     appData.showResult();
     appData.inputBlocked();
     appData.buttonSwitch();
