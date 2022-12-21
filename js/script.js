@@ -53,6 +53,10 @@ const appData = {
     screens[0].childNodes[1].childNodes[1].childNodes[1].selected = true;
   },
 
+  add: function () {
+    appData.screens = [];
+  },
+
   init: function () {
     appData.addTitle();
     inputRange.addEventListener(`input`, appData.spanChange);
@@ -65,11 +69,13 @@ const appData = {
     if (!appData.addScreens()) {
       appData.showResult();
       inputRangeFlag = false;
+      appData.add();
       return;
     }
     inputRangeFlag = true;
     appData.addServices();
     appData.addPrices();
+    appData.add();
     appData.showResult();
     appData.inputBlocked();
     appData.buttonSwitch();
