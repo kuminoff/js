@@ -74,6 +74,8 @@ const appData = {
     appData.add();
     appData.showResult();
     appData.new();
+    appData.showResult1();
+    appData.spanChange();
   },
 
   showResult: function () {
@@ -86,7 +88,11 @@ const appData = {
   },
 
   showResult1: function () {
+    total.value = appData.screenPrice;
     totalCountRollback.value = appData.servicePercentPrice;
+    totalFullCount.value = appData.fullPrice;
+    totalCountRollback.value = appData.servicePercentPrice;
+    totalCount.value = appData.screenCount;
   },
 
   addTitle: function () {
