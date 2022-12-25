@@ -74,11 +74,11 @@ const appData = {
   },
 
   add: function () {
-    appData.screens = [];
+    this.screens = [];
   },
 
   init: function () {
-    appData.addTitle();
+    this.addTitle();
     inputRange.addEventListener("input", appData.spanChange);
     startBtn.addEventListener("click", appData.start);
     buttonPluse.addEventListener("click", appData.addScreenBlock);
